@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/5b36751d13.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="singleplayer.css">
+
+  <title>MIng Memory</title>
+</head>
+<body>
+<header>
+  <a href="index.html"> <i class="fa-solid fa-house"> </i> </a>
+  Memory
+</header>
+<div class="grid-container">
+</div>
+<div class="score left">
+
+  <p>  Player name:<div id="playerName"></div>
+
+  </p>
+
+  <div id="divSetPlayerName">
+
+    <input type="text" id="playerNameInput" placeholder="Enter player name" />
+
+    <button onclick="setPlayerName();">Set player name</button>
+  </div>
+
+  <p>Score: <span class="score1"></span></p>
+</div>
+</div>
+<div class="actions">
+  <button onclick="restart()">Restart</button>
+</div>
+<footer>
+  Danke fürs spielen. wir hoffen euch gefällt unser kleines Spiel
+</footer>
+<script src="singleplayer.js"></script>
+</body>
+</html>
