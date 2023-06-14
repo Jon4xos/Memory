@@ -4,11 +4,12 @@ let cardsCounter = 0;
 let firstCard, secondCard;
 let lockBoard = false;
 let score1 = 0;
-let playerName = "";
+let playerName1 = "";
 
 const score1El = document.querySelector(".score1");
 const scoreBackgrounds = document.querySelectorAll(".score");
 
+var level = (+localStorage.getItem("level") || 1);
 score1El.textContent = score1;
 scoreBackgrounds[0].classList.add("active")
 
@@ -153,4 +154,5 @@ function GameEnd() {
     const highscores = JSON.parse(localStorage.getItem("highscores-singleplayer") || "{}");
     highscores[playerName1] = score1;
     localStorage.setItem("highscores-singleplayer", JSON.stringify(highscores));
+    localStorage.setItem("level", level + 1);
 }

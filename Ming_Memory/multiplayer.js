@@ -13,6 +13,7 @@ const score1El = document.querySelector(".score1");
 const score2El = document.querySelector(".score2");
 const scoreBackgrounds = document.querySelectorAll(".score");
 
+
 score1El.textContent = score1;
 score2El.textContent = score2;
 scoreBackgrounds[0].classList.add("active")
@@ -154,6 +155,7 @@ function resetBoard() {
   firstCard = null;
   secondCard = null;
   lockBoard = false;
+
 }
 
 function restart() {
@@ -185,15 +187,17 @@ function GameEnd() {
   highscores[playerName1] = score1;
   highscores[playerName2] = score2;
   localStorage.setItem("highscores-multiplayer", JSON.stringify(highscores));
+
 }
+
 
 /*
 Einzelspieler ohne abwechselden Spieler (so gut wie fertig)
-Name festlegen Nutzer ( fertig bis uaf formatierung und setzen der Namen in eine Liste)
+Name festlegen Nutzer ( fertig bis auf formatierung und setzen der Namen in eine Liste)
 Ende detecten => Highscores speichern und level erhöhen
 Level => Anzahl an Karten an das Level anpassen
 Anzahl der Karten => Grid Layout Responsive machen
-Highscores im Main Menu anzeigen
+Highscores im Main Menu anzeigen (fertig)
 
 Markdown Datei für Features schreiben
  */

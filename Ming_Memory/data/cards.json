@@ -1,39 +1,39 @@
 [
     {
-        "image": "../assets/chili.png",
-        "name": "chili"
+        "image": "../assets/racoon.png",
+        "name": "racoon"
     },
     {
-        "image": "../assets/grapes.png",
-        "name": "grapes"
+        "image": "../assets/guinea_pig.png",
+        "name": "guinea pig"
     },
     {
-        "image": "../assets/lemon.png",
-        "name": "lemon"
+        "image": "../assets/cow.png",
+        "name": "cow"
     },
     {
-        "image": "../assets/orange.png",
-        "name": "orange"
+        "image": "../assets/panda.png",
+        "name": "panda"
     },
     {
-        "image": "../assets/pineapple.png",
-        "name": "pineapple"
+        "image": "../assets/squirrel.png",
+        "name": "squirrel"
     },
     {
-        "image": "../assets/strawberry.png",
-        "name": "strawberry"
+        "image": "../assets/cock.png",
+        "name": "cock"
     },
     {
-        "image": "../assets/tomato.png",
-        "name": "tomato"
+        "image": "../assets/bear.png",
+        "name": "bear"
     },
     {
-        "image": "../assets/watermelon.png",
-        "name": "watermelon"
+        "image": "../assets/hippo.png",
+        "name": "hippo"
     },
     {
-        "image": "../assets/cherries.png",
-        "name": "cherries"
+        "image": "../assets/zebra.png",
+        "name": "zebra"
     },
     {
         "image": "../assets/maus.png",
@@ -70,5 +70,53 @@
     {
         "image": "../assets/schaf.png",
         "name": "schaf"
+    },
+    {
+        "image": "../assets/fish.png",
+        "name": "fish"
+    },
+    {
+        "image": "../assets/tiger.png",
+        "name": "tiger"
+    },
+    {
+        "image": "../assets/biene.png",
+        "name": "biene"
+    },
+    {
+        "image": "../assets/pinguin.png",
+        "name": "pinguin"
+    },
+    {
+        "image": "../assets/eule.png",
+        "name": "eule"
+    },
+    {
+        "image": "../assets/schnecke.png",
+        "name": "schnecke"
+    },
+    {
+        "image": "../assets/frosch.png",
+        "name": "frosch"
+    },
+    {
+        "image": "../assets/bieber.png",
+        "name": "bieber"
+    },
+    {
+        "image": "../assets/katze.png",
+        "name": "katze"
+    },
+    {
+        "image": "../assets/hase.png",
+        "name": "hase"
+    },
+    {
+        "image": "../assets/schildkröte.png",
+        "name": "schildkröte"
+    },
+    {
+        "image": "../assets/schwein.png",
+        "name": "schwein"
     }
 ]
