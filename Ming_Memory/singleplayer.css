@@ -14,24 +14,27 @@ p {
     font-weight: bold;
 }
 
-.actions {
-    display: flex;
+#actions {
+    position: fixed;
+    bottom: 40px;
+    display: none;
     justify-content: center;
+    padding: 8px;
+    width: 100%;
 }
 
-.actions button {
+#actions button {
     padding: 8px 16px;
     font-size: 30px;
     border-radius: 10px;
     background-color: #27ae60;
     color: white;
-    margin-bottom: 20px;
 }
 
 .grid-container {
     display: grid;
     justify-content: center;
-    grid-gap: 16px;
+    grid-gap: 1%;
     grid-template-columns: repeat(6, 180px);
     grid-template-rows: repeat(4, calc(180px / 2 * 3));
 }
@@ -106,6 +109,7 @@ p {
     color: black;
     display: compact;
 }
+
 @media (max-width: 1450px) {
     .score {
         top: 0;

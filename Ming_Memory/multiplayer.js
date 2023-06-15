@@ -13,19 +13,25 @@ const score1El = document.querySelector(".score1");
 const score2El = document.querySelector(".score2");
 const scoreBackgrounds = document.querySelectorAll(".score");
 
+let level = 1;
 
 score1El.textContent = score1;
 score2El.textContent = score2;
 scoreBackgrounds[0].classList.add("active")
 
-fetch("./data/cards.json")
-  .then((res) => res.json())
-  .then((data) => {
-    cards = [...data, ...data];
-    cardsCounter = data.length;
-    shuffleCards();
-    generateCards();
-  });
+loadAndShuffleCards();
+
+function loadAndShuffleCards() {
+  fetch("./data/cards.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const selectedData = data.slice(0, level * 3);
+        cards = [...selectedData, ...selectedData];
+        cardsCounter = selectedData.length;
+        shuffleCards();
+        generateCards();
+      });
+}
 
 function shuffleCards() {
   let currentIndex = cards.length,
@@ -75,7 +81,7 @@ function posToTarget(ev) {
   const target = document.elementFromPoint(
       ev.changedTouches[0].pageX,
       ev.changedTouches[0].pageY
-  )
+  ).parentElement
   flipCard(target)
 }
 
@@ -158,16 +164,7 @@ function resetBoard() {
 
 }
 
-function restart() {
-  resetBoard();
-  shuffleCards();
-  score1 = 0;
-  score2 = 0;
-  document.querySelector(".score2").textContent = score2;
-  document.querySelector(".score1").textContent = score1;
-  gridContainer.innerHTML = "";
-  generateCards();
-}
+
 function setPlayerName () {
   let playerName = document.getElementById('playerName');
   playerName1 = document.getElementById('playerNameInput').value;
@@ -187,9 +184,17 @@ function GameEnd() {
   highscores[playerName1] = score1;
   highscores[playerName2] = score2;
   localStorage.setItem("highscores-multiplayer", JSON.stringify(highscores));
-
+  document.getElementById('actions').style.display = 'flex';
 }
-
+function nextLevel() {
+  level++;
+  resetBoard();
+  loadAndShuffleCards();
+  score = 0;
+  scoreEl.textContent = score;
+  gridContainer.innerHTML = "";
+  document.getElementById('actions').style.display = 'none';
+}
 
 /*
 Einzelspieler ohne abwechselden Spieler (so gut wie fertig)
@@ -201,13 +206,3 @@ Highscores im Main Menu anzeigen (fertig)
 
 Markdown Datei für Features schreiben
  */
-
-/*
-var level = (+localStorage.getItem("level") || 1);
-localStorage.setItem("level", level + 1);
-
-const highscores = JSON.parse(localStorage.getItem("highscores") || "[]")
-highscores.append({score: 1, user_agent: window.navigator.userAgent, name: "name"});
-highscores.sort((a, b) => a.score - b.score);
-localStorage.setItem("highscores", JSON.stringify(highscores))
-*/

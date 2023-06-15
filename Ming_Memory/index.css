@@ -25,16 +25,16 @@
     width: 30%;
     position: absolute;
     padding: 8px 0;
-    background-color: gray;
+    background-color: deeppink;
     margin: 10px;
     display: inline-block;
 }
 
 @media (max-width: 1000px) {
     .Highscore {
-        top: 0;
+        top: 50%;
         margin: 10px;
-        width: 100%;
+        width: 40%;
 
     }
 }
@@ -59,7 +59,8 @@
 }
 
 footer {
-    margin-top: auto;
+   position: fixed;
+    bottom: 0;
     width: 100%;
     background-color: azure;
     padding: 8px;

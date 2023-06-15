@@ -3,24 +3,30 @@ let cards = [];
 let cardsCounter = 0;
 let firstCard, secondCard;
 let lockBoard = false;
-let score1 = 0;
+let score = 0;
 let playerName1 = "";
 
-const score1El = document.querySelector(".score1");
+const scoreEl = document.getElementById("score-entry");
 const scoreBackgrounds = document.querySelectorAll(".score");
 
-var level = (+localStorage.getItem("level") || 1);
-score1El.textContent = score1;
+let level = 1;
+
+scoreEl.textContent = score;
 scoreBackgrounds[0].classList.add("active")
 
-fetch("./data/cards.json")
-    .then((res) => res.json())
-    .then((data) => {
-        cards = [...data, ...data];
-        cardsCounter = data.length;
-        shuffleCards();
-        generateCards();
-    });
+loadAndShuffleCards();
+
+function loadAndShuffleCards() {
+    fetch("./data/cards.json")
+        .then((res) => res.json())
+        .then((data) => {
+            const selectedData = data.slice(0, level * 3);
+            cards = [...selectedData, ...selectedData];
+            cardsCounter = selectedData.length;
+            shuffleCards();
+            generateCards();
+        });
+}
 
 function shuffleCards() {
     let currentIndex = cards.length,
@@ -42,16 +48,16 @@ function generateCards() {
         cardElement.setAttribute("data-name", card.name);
         cardElement.innerHTML = `
       <div class="front">
-      <img class="front-image" src=${card.image} />
+      <img class="front-image" alt="Rückseite" ${card.image} />
       </div>
       <div class="back"></div>
     `;
         gridContainer.appendChild(cardElement);
         addListeners(cardElement);
         gridContainer.appendChild(cardElement);
-
     }
 }
+
 function addListeners(target) {
     target.addEventListener("mousedown", flipCardFromBack);
     target.addEventListener("mouseup", flipCardFromBack);
@@ -65,12 +71,13 @@ function removeListeners(target) {
     target.removeEventListener("touchstart", flipCardFromBack);
     target.removeEventListener("touchend", posToTarget);
 }
+
 function posToTarget(ev) {
     ev.preventDefault();
     const target = document.elementFromPoint(
         ev.changedTouches[0].pageX,
         ev.changedTouches[0].pageY
-    )
+    ).parentElement
     flipCard(target)
 }
 
@@ -78,6 +85,7 @@ function flipCardFromBack(ev) {
     ev.preventDefault()
     flipCard(ev.target.parentElement)
 }
+
 function flipCard(target) {
     if (lockBoard) return;
     if (!target.getAttribute("data-name")) return;
@@ -96,7 +104,7 @@ function flipCard(target) {
     checkForMatch();
 
     setTimeout(() => {
-        score1El.textContent = score1;
+        scoreEl.textContent = score;
     }, 500);
 }
 
@@ -114,7 +122,7 @@ function disableCards() {
     cardsCounter--;
     removeListeners(firstCard);
     removeListeners(secondCard);
-    score1=score1+5;
+    score=score+5;
     resetBoard();
     if (!cardsCounter) {
         GameEnd();
@@ -127,7 +135,7 @@ function unflipCards() {
         secondCard.classList.remove("flipped");
         resetBoard();
     }, 1000);
-        score1=score1-1;
+        score=score-1;
 }
 
 function resetBoard() {
@@ -136,23 +144,27 @@ function resetBoard() {
     lockBoard = false;
 }
 
-function restart() {
-    resetBoard();
-    shuffleCards();
-    score1 = 0;
-    document.querySelector(".score1").textContent = score1;
-    gridContainer.innerHTML = "";
-    generateCards();
-}
+
 function setPlayerName () {
     let playerName = document.getElementById('playerName');
     playerName1 = document.getElementById('playerNameInput').value;
     playerName.innerHTML = playerName1;
     document.getElementById('divSetPlayerName').style.display = 'none';
 }
+
 function GameEnd() {
     const highscores = JSON.parse(localStorage.getItem("highscores-singleplayer") || "{}");
-    highscores[playerName1] = score1;
+    highscores[playerName1] = { score, level };
     localStorage.setItem("highscores-singleplayer", JSON.stringify(highscores));
-    localStorage.setItem("level", level + 1);
+    document.getElementById('actions').style.display = 'flex';
+}
+
+function nextLevel() {
+    level++;
+    resetBoard();
+    loadAndShuffleCards();
+    score = 0;
+    scoreEl.textContent = score;
+    gridContainer.innerHTML = "";
+    document.getElementById('actions').style.display = 'none';
 }

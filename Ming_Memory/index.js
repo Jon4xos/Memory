@@ -9,11 +9,12 @@ const valuesMultiplayer = Object.entries(storeMultiplayerScores).map(entry => ({
     score: entry[1]
 }));
 
-const valuesSingleplayer = Object.entries(storeSingleplayerScores).map(entry => ({
-    name2: entry[0],
-    level2: entry[1],
-    score2: entry[2]
-}));
+const valuesSingleplayer = Object.entries(storeSingleplayerScores).map(entry =>
+    ({
+        name: entry[0],
+        level: entry[1].level,
+        score: entry[1].score
+    }));
 
 valuesMultiplayer.sort((a, b) => b.score - a.score).forEach(value => {
     const element = document.createElement("div");
@@ -21,8 +22,11 @@ valuesMultiplayer.sort((a, b) => b.score - a.score).forEach(value => {
     multiplayerScoreContainer.appendChild(element);
 });
 
-valuesSingleplayer.sort((a,b) => b.score- a.score2).forEach(value => {
+valuesSingleplayer.sort((a,b) => {
+    const score = b.level- a.level;
+    return score === 0 ? b.score - b.score: score;
+}).forEach(value => {
     const element = document.createElement("div");
-    element.innerText = value.name2 + ": " + value.level2 +":" + value.score2;
+    element.innerText = value.name + ": " + value.score +" in level " + value.level;
     singleplayerScoreContainer.appendChild(element);
 });
