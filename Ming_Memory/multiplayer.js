@@ -181,8 +181,8 @@ function setPlayerName2() {
 
 function GameEnd() {
   const highscores = JSON.parse(localStorage.getItem("highscores-multiplayer") || "{}");
-  highscores[playerName1] = score1;
-  highscores[playerName2] = score2;
+  highscores[playerName1] = {score1, level};
+  highscores[playerName2] = {score2,level};
   localStorage.setItem("highscores-multiplayer", JSON.stringify(highscores));
   document.getElementById('actions').style.display = 'flex';
 }
@@ -191,7 +191,9 @@ function nextLevel() {
   resetBoard();
   loadAndShuffleCards();
   score = 0;
-  scoreEl.textContent = score;
+  score2 =0;
+  score1El.textContent = score;
+  score2El.textContent = score2;
   gridContainer.innerHTML = "";
   document.getElementById('actions').style.display = 'none';
 }

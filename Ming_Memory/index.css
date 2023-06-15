@@ -28,11 +28,13 @@
     background-color: deeppink;
     margin: 10px;
     display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 @media (max-width: 1000px) {
     .Highscore {
-        top: 50%;
+        top: 70%;
         margin: 10px;
         width: 40%;
 
@@ -53,7 +55,7 @@
 
 .Highscore p {
     padding: 10px 10px 10px 14px;
-    font-size: 1.5vw;
+    font-size: 2vw;
     color: black;
     display: compact;
 }
@@ -65,6 +67,11 @@ footer {
     background-color: azure;
     padding: 8px;
     text-align: center;
+
+}
+#highscoreDaten {
+    font-size: 1.5vw;
+    padding: 6px;
 
 }
 

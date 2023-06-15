@@ -20,7 +20,7 @@ function loadAndShuffleCards() {
     fetch("./data/cards.json")
         .then((res) => res.json())
         .then((data) => {
-            const selectedData = data.slice(0, level * 3);
+            const selectedData = data.slice(0, level * 4);
             cards = [...selectedData, ...selectedData];
             cardsCounter = selectedData.length;
             shuffleCards();
@@ -48,13 +48,12 @@ function generateCards() {
         cardElement.setAttribute("data-name", card.name);
         cardElement.innerHTML = `
       <div class="front">
-      <img class="front-image" alt="Rückseite" ${card.image} />
+      <img class="front-image" src=${card.image} />
       </div>
       <div class="back"></div>
     `;
         gridContainer.appendChild(cardElement);
         addListeners(cardElement);
-        gridContainer.appendChild(cardElement);
     }
 }
 

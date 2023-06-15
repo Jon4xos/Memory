@@ -1,17 +1,23 @@
-body {
-    background-color: lightgray;
-}
-
-h1 {
-    text-align: center;
-    font-weight: 700;
-    font-size: 50px;
-}
-
 p {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
+}
+#actions {
+    position: fixed;
+    bottom: 40px;
+    display: none;
+    justify-content: center;
+    padding: 8px;
+    width: 100%;
+}
+
+#actions button {
+    padding: 8px 16px;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: #27ae60;
+    color: white;
 }
 
 .grid-container {
